@@ -45,5 +45,8 @@ npm install
 
 
 ## Usage
-保存時に自動でタイプセットされるようになっています。デフォルトだと $\text{up}\LaTeX$ でタイプセットされます。変えたい場合は`.devcontainer/.latexmkrc`を書き換えてください。
+保存時に自動でタイプセットされるようになっています。デフォルトだと $\text{up}\LaTeX$ でタイプセットされます。
+変えたい場合は`.devcontainer/.latexmkrc`を書き換えてください。
+
+https://github.com/Kyo-s-s/vscode-fmt-del これを導入すると、`.tex`に対する`.fmt`ファイルを容易に削除することができます。
 
