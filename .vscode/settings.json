@@ -5,7 +5,9 @@
             "comments": "on",
             "strings": "on",
             "other": "on"
-        }
+        },
+        "editor.tabSize": 4,
+        "editor.insertSpaces": false
     },
     "latex-workshop.latex.recipes": [
         {
