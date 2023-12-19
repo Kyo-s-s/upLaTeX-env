@@ -39,18 +39,13 @@ replacements:
       $body =~ s@言う@いう@g;
       $body =~ s@言え@いえ@g;
       $body =~ s@呼ぶ@よぶ@g;
-      # Add space before and after +, -, and $.
-      # $body =~ s@ *([\+\-\$]) *()@ $1 @g;
-      # Delete space for a inline math single expression.
-      # $body =~ s@\$ *([+-]) *(\w*) *\$@\$ $1$2 \$@g;
-      # Delete the space between +, - and , or :.      
-      # $body =~ s@([\+\-]) *([,:])@$1$2@g;
+
       # Add space after comma.
       $body =~ s@(,) *@, @g;
       # Delete space after tab and \n.
-      # $body =~ s@([\t\n]) *@$1@g;
+      $body =~ s@([\t\n]) *@$1@g;
       # Double or more space to single space.
-      # $body =~ s@ +@ @g;
+      $body =~ s@ +@ @g;
       # ( $ f $ ) -> ($ f $)
       $body =~ s@([({\[]) *\$@$1\$@g;
       $body =~ s@\$ *([)}\]．，])@\$$1@g;
