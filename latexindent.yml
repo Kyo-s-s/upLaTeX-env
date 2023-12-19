@@ -16,10 +16,20 @@ lookForAlignDelims:
     alignDoubleBackSlash: 0
 
 replacements:
-  -
-    substitution: |-
+  - substitution: >
       s/(?<=\\begin\{document\})(.*?)(?=\\end\{document\})/
       my $body = $1;
+
+      # % disable-latexindent ... % enable-latexindent sections are not replaced.
+      my @disabledSections = $body =~ m@(% disable-latexindent.*?% enable-latexindent)@gs;
+          
+      # Save disabled sections and replace them with placeholders
+      my %placeholders;
+      for my $section (@disabledSections) {
+        my $placeholder = "\x00" . scalar(keys %placeholders) . "\x00";
+        $placeholders{$placeholder} = $section;
+        $body =~ s@\Q$section\E@$placeholder@g;
+      }
 
       $body =~ s@。@．@g;
       $body =~ s@、@，@g;
@@ -29,17 +39,24 @@ replacements:
       $body =~ s@言う@いう@g;
       $body =~ s@言え@いえ@g;
       $body =~ s@呼ぶ@よぶ@g;
-
-# Add space after comma.
+      # Add space before and after +, -, and $.
+      # $body =~ s@ *([\+\-\$]) *()@ $1 @g;
+      # Delete space for a inline math single expression.
+      # $body =~ s@\$ *([+-]) *(\w*) *\$@\$ $1$2 \$@g;
+      # Delete the space between +, - and , or :.      
+      # $body =~ s@([\+\-]) *([,:])@$1$2@g;
+      # Add space after comma.
       $body =~ s@(,) *@, @g;
-# Delete space after tab and \n.
-      $body =~ s@([\t\n]) *@$1@g
-# Double or more space to single space.
-      $body =~ s@ +@ @g;
-# ( $ f $ ) -> ($ f $)
+      # Delete space after tab and \n.
+      # $body =~ s@([\t\n]) *@$1@g;
+      # Double or more space to single space.
+      # $body =~ s@ +@ @g;
+      # ( $ f $ ) -> ($ f $)
       $body =~ s@([({\[]) *\$@$1\$@g;
       $body =~ s@\$ *([)}\]．，])@\$$1@g;
 
-      $body;/sxge;
+      $body =~ s@\x00(\d+)\x00@$placeholders{"\x00$1\x00"}@ge;
+
+      $body;/gsxe;
     lookForThis: 1
     when: before
