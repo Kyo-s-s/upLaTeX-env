@@ -1,0 +1,6 @@
+node_modules
+*.pdf
+*.fmt
+
+report.code-snippets
+fmt-del-0.0.1.vsix

@@ -1,0 +1,127 @@
+global
+function math(context) {
+    return context.scopes.some(s => s.startsWith("meta.math"));
+}
+endglobal
+
+
+context !math(context)
+snippet ;; "[HS] math inline" A
+$ $1 $ $0
+endsnippet
+
+context !math(context)
+snippet `([\\a-zA-Z0-9_^+-/=]+);;` "[HS] convert math inline" A
+`` rv = `$ ${m[1]} $ ` ``
+endsnippet
+
+context math(context)
+snippet inv "inverse" Ai
+^{-1}
+endsnippet
+
+context math(context)
+snippet := "coloneqq" Ai
+\\coloneqq 
+endsnippet
+
+context math(context)
+snippet xx "times" A
+\\times 
+endsnippet
+
+# Rbb -> \mathbb{R}
+context math(context)
+snippet `\b([A-Z])bb` " [HS] Math bb" A
+`` rv = `\\mathbb{${m[1]}}` ``
+endsnippet
+context !math(context)
+snippet `\b([A-Z])bb` " [HS] Math bb" A
+`` rv = ` $ \\mathbb{${m[1]}} $ ` ``
+endsnippet
+
+# Acal -> \mathcal{A}
+context math(context)
+snippet `\b([A-Z])cal` " [HS] Math cal" A
+`` rv = `\\mathcal{${m[1]}}` ``
+endsnippet
+context !math(context)
+snippet `\b([A-Z])cal` " [HS] Math cal" A
+`` rv = ` $ \\mathcal{${m[1]}} $ ` ``
+endsnippet
+
+# le -> \le
+context math(context)
+snippet `\b(?<!\\)(?<!\\mathrm\{)(le|ge|div|to|not|in|sup|dim|deg|ker|range|grad|rot|Div|rank|diag|det|arg|max|min|argmax|argmin|sin|cos|tan|cot|ln|log|exp|perp|cup|cap|sim|iff|mid|Im|Re|succ|prec|circ|neq|ni|lim|sum|prod|const)` " [HS] Commands space" A
+`` rv = `\\${m[1]} ` ``
+endsnippet
+context math(context)
+snippet `\b(?<!\\)(?<!\\mathrm\{)(ift|c..|l..|v..)` " [HS] Commands" A
+`` 
+trans = {
+    "ift": "infty",
+    "c..": "cdots",
+    "l..": "ldots",
+    "v..": "vdots",
+}
+rv = `\\${trans[m[1]] ?? m[1]} ` 
+``
+endsnippet
+
+# lrp -> \lrp{ } 
+context math(context)
+snippet `\b(?<!\\)(lrp|lrb|lrs)` " [HS] Math bracket" A
+`` rv = `\\${m[1]}{ ${snip.tabstop(1)} } ${snip.tabstop(0)}` ``
+endsnippet
+
+# env
+context math(context)
+snippet `\b(?<![\\{])(mat|pmat)` " [HS] Math environment" A
+``
+trans = {
+    "mat": "matrix",
+    "pmat": "pmatrix",
+}
+rv = `\\begin{${trans[m[1]] ?? m[1]}}\n\t${snip.tabstop(1)}\n\\end{${trans[m[1]] ?? m[1]}}`
+``
+endsnippet
+
+context !math(context)
+snippet `\b(?<![\\{])(align|equat|gather|example|remark)` " [HS] Math environment" A
+``
+trans = {
+    "equat": "equation",
+}
+rv = `\\begin{${trans[m[1]] ?? m[1]}}\n\t${snip.tabstop(1)}\n\\end{${trans[m[1]] ?? m[1]}}`
+``
+endsnippet
+
+
+context math(context)
+snippet __ " [HS] Math _{}" Ai
+_{$1} $0
+endsnippet
+
+context math(context)
+snippet ^^ " [HS] Math ^{}" Ai
+^{$1} $0
+endsnippet
+
+
+# -------------------------------------------------------------------
+snippet `\beval ?(.*)=` "eval"
+`` rv = eval(m[1]) ``
+endsnippet
+
+context math(context)
+snippet nowmode " [HS] now mode"
+math
+endsnippet
+context !math(context)
+snippet nowmode " [HS] now mode"
+normal
+endsnippet
+
+snippet dategreeting "Gives you the current date!"
+Hello from your hsnip at ``rv = new Date().toDateString()``!
+endsnippet

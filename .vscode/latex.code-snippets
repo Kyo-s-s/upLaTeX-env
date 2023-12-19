@@ -1,0 +1,194 @@
+{
+    "ignore": {
+      "prefix": "ignore",
+      "body": ["%textlint-disable", "$0", "%textlint-enable"],
+      "description": ""
+    },
+    "ignore-b": {
+      "prefix": ["ignore-b", "ignoreb"],
+      "body": ["%textlint-disable"],
+      "description": ""
+    },
+    "ignore-e": {
+      "prefix": ["ignore-e", "ignoree"],
+      "body": ["%textlint-enable"],
+      "description": ""
+    },
+    "figure": {
+      "prefix": "figure",
+      "body": [
+        "\\begin{figure}[H]",
+        "    \\centering",
+        "    \\includegraphics[width=${1:100}mm]{$2}",
+        "    \\caption{$3}",
+        "    \\label{fig:$4}",
+        "\\end{figure}",
+        ""
+      ],
+      "description": ""
+    },
+    "algorithm": {
+      "prefix": "algorithm",
+      "body": [
+        "\\begin{algorithm}[H]",
+        "    \\caption{$1}",
+        "    \\label{alg:$2}",
+        "    \\begin{algorithmic}[1]",
+        "    \\Require{}",
+        "    \\Ensure{}",
+        "    \\Initialize{}",
+        "    ",
+        "    \\end{algorithmic}",
+        "\\end{algorithm}",
+        ""
+      ],
+      "description": ""
+    },
+    "\\code": {
+      "prefix": "\\code",
+      "body": ["\\begin{lstlisting}[language=$1]", "$2", "\\end{lstlisting}", ""],
+      "description": ""
+    },
+    "\\itembox": {
+      "prefix": "\\itembox",
+      "body": ["\\begin{itembox}[l]{${1:Title}}", "    $0", "\\end{itembox}"],
+      "description": ""
+    },
+    "\\bbN": {
+      "prefix": "\\bN",
+      "body": "\\mathbb{N}",
+      "description": ""
+    },
+    "\\bbZ": {
+      "prefix": "\\bZ",
+      "body": "\\mathbb{Z}",
+      "description": ""
+    },
+    "\\bbQ": {
+      "prefix": "\\bQ",
+      "body": "\\mathbb{Q}",
+      "description": ""
+    },
+    "\\bbC": {
+      "prefix": "\\bC",
+      "body": "\\mathbb{C}",
+      "description": ""
+    },
+    "\\bbR": {
+      "prefix": "\\bR",
+      "body": "\\mathbb{R}",
+      "description": ""
+    },
+    "\\begin": {
+      "prefix": "\\begin",
+      "body": ["\\begin{$1}", "    $0", "\\end{$1}"],
+      "description": ""
+    },
+    "\\int": {
+      "prefix": "\\int",
+      "body": "\\int_{${1:-\\infty}}^{${2:\\infty}} ",
+      "description": ""
+    },
+    "\\sum": {
+      "prefix": "\\sum",
+      "body": "\\sum_{$1}^{$2} ",
+      "description": ""
+    },
+    "\\frac": {
+      "prefix": "\\frac",
+      "body": "\\frac{$1}{$2} ",
+      "description": ""
+    },
+    "\\left{": {
+      "prefix": "\\left{",
+      "body": "\\left \\{ $0 \\right \\} ",
+      "description": ""
+    },
+    "\\left(": {
+      "prefix": "\\left(",
+      "body": "\\left ( $0 \\right ) ",
+      "description": ""
+    },
+    "\\left[": {
+      "prefix": "\\left[",
+      "body": "\\left [ $0 \\right ] ",
+      "description": ""
+    },
+    "\\left|": {
+      "prefix": "\\left|",
+      "body": "\\left| $0 \\right|",
+      "description": ""
+    },
+    "\\thm": {
+      "prefix": "\\thm",
+      "body": ["\\begin{thm}{$1}", "    $0", "\\end{thm}"],
+      "description": ""
+    },
+    "\\thm*": {
+      "prefix": "\\thm*",
+      "body": ["\\begin{thm*}", "    $0", "\\end{thm*}"],
+      "description": ""
+    },
+    "\\dfn": {
+      "prefix": "\\dfn",
+      "body": ["\\begin{dfn}{$1}", "    $0", "\\end{dfn}"],
+      "description": ""
+    },
+    "\\dfn*": {
+      "prefix": "\\dfn*",
+      "body": ["\\begin{dfn*}", "    $0", "\\end{dfn*}"],
+      "description": ""
+    },
+    "\\lem": {
+      "prefix": "\\lem",
+      "body": ["\\begin{lem}{$1}", "    $0", "\\end{lem}"],
+      "description": ""
+    },
+    "\\lem*": {
+      "prefix": "\\lem*",
+      "body": ["\\begin{lem*}", "    $0", "\\end{lem*}"],
+      "description": ""
+    },
+    "math": {
+      "prefix": "math",
+      "body": "\\$ $1 \\$ $0 ",
+      "description": ""
+    },
+    "\\lrp": {
+      "prefix": "\\lrp",
+      "body": "\\lrp{ $1 }",
+      "description": ""
+    },
+    "\\lrb": {
+      "prefix": "\\lrb",
+      "body": "\\lrb{ $1 }",
+      "description": ""
+    },
+    "\\lrs": {
+      "prefix": "\\lrs",
+      "body": "\\lrs{ $1 }",
+      "description": ""
+    },
+    "\\bf": {
+      "prefix": "\\bf",
+      "body": "\\textbf{$1}",
+      "description": ""
+    },
+    "tikzpicture": {
+      "prefix": "tikzpicture",
+      "body": [
+        "\\begin{figure}[H]",
+        "    \\centering",
+        "    \\begin{tikzpicture}",
+        "        % \\draw[->, >=stealth, semithick] (-1, 0)--(5, 0)node[above]{\\$x\\$}; %x軸",
+        "        % \\draw[->, >=stealth, semithick] (0, -1)--(0, 5)node[right]{\\$y\\$}; %y軸",
+        "        % \\draw (0, 0) node [below right]{\\$O\\$};",
+        "    \\end{tikzpicture}",
+        "    \\caption{}",
+        "    \\label{fig:}",
+        "\\end{figure}"
+      ],
+      "description": ""
+    }
+  }
+  

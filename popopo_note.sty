@@ -1,0 +1,28 @@
+\usepackage{thmbox}
+
+\theoremstyle{plain}
+\newtheorem[M]{theorem}{Thm}[section]       % 定理
+\newtheorem[M]{definition}[theorem]{Def}    % 定義
+\newtheorem[M]{lemma}[theorem]{Lem}         % 補題
+\newtheorem[M]{corollary}[theorem]{Cor}     % 系
+\newtheorem[M]{proposition}[theorem]{Prop}  % 命題
+
+\newenvironment{thm}[1]{\begin{theorem}[#1]\indent\upshape}{\end{theorem}}
+\newenvironment{thm*}{\begin{theorem}\indent\upshape}{\end{theorem}}
+
+\newenvironment{dfn}[1]{\begin{definition}[#1]\indent\upshape}{\end{definition}}
+\newenvironment{dfn*}{\begin{definition}\indent\upshape}{\end{definition}}
+
+\newenvironment{lem}[1]{\begin{lemma}[#1]\indent\upshape}{\end{lemma}}
+\newenvironment{lem*}{\begin{lemma}\indent\upshape}{\end{lemma}}
+
+\newenvironment{cor}[1]{\begin{corollary}[#1]\indent\upshape}{\end{corollary}}
+\newenvironment{cor*}{\begin{corollary}\indent\upshape}{\end{corollary}}
+
+\newenvironment{remark}{\begin{example}[Remark]}{\end{example}}    % 注意
+
+\newenvironment{prop}[1]{\begin{proposition}[#1]\indent\upshape}{\end{proposition}}
+\newenvironment{prop*}{\begin{proposition}\indent\upshape}{\end{proposition}}
+
+\newcommand{\thmref}[1]{Thm~\ref{#1}}
+\newcommand{\dfnref}[1]{Def~\ref{#1}}

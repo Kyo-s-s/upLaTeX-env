@@ -1,0 +1,65 @@
+{
+    "editor.quickSuggestionsDelay": 0,
+    "[latex]": {
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        }
+    },
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-l",
+                "-synctex=1",
+                "-halt-on-error",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        }
+    ],
+    "editor.defaultFormatter": "James-Yu.latex-workshop",
+    "editor.formatOnSave": true,
+    "latex-workshop.intellisense.package.enabled": true,
+    "latex-workshop.latexindent.path": "latexindent",
+    "latex-workshop.latexindent.args": [
+        "%TMPFILE%",
+        "-c=%DIR%/",
+        "-r",
+        "-y=defaultIndent: '%INDENT%'"
+    ],
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.dvi",
+        "*.fdb_latexmk",
+        "*.fls",
+        "*.log",
+        "*.synctex.gz",
+        "*.toc",
+        "*.nav",
+        "*.out",
+        "*.snm"
+    ],
+    "latex-workshop.viewer.pdf.internal.port": 12345,
+    "latex-workshop.hover.preview.newcommand.newcommandFile": "/home/docker/work/hover.tex",
+    "textlint.configPath": "/home/docker/work/.textlintrc.json",
+    "textlint.nodePath": "/home/docker/work/node_modules",
+    "textlint.run": "onSave",
+    "hsnips.hsnipsPath": ".vscode",
+    "files.exclude": {
+        ".devcontainer": false
+    }
+}

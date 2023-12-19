@@ -1,0 +1,22 @@
+{
+    "plugins": ["latex2e"],
+    "rules": {
+        "preset-ja-spacing": true,
+        "no-doubled-joshi": true,
+        "preset-ja-technical-writing": {
+            "no-exclamation-question-mark": false,
+            "no-unmatched-pair": false,
+            "sentence-length": false,
+            "max-comma": false,
+            "max-kanji-continuous-len": false,
+            "ja-no-mixed-period": {
+                "periodMark": "．",
+                "allowPeriodMarks": [
+                    "，",
+                    ":"
+                ],
+                "checkFootnote": true
+            }
+        }
+    }
+}

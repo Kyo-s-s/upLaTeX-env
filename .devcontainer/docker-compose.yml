@@ -1,0 +1,16 @@
+version: '3'
+
+volumes:
+  latex-node-modules:
+
+services:
+  latex-docker:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/home/docker/work
+      - ./.latexmkrc:/home/docker/.latexmkrc
+      - ./indentconfig.yml:/home/docker/indentconfig.yaml
+      - latex-node-modules:/home/docker/work/.node_modules
+    tty: true
