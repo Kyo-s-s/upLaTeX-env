@@ -41,14 +41,17 @@ replacements:
       $body =~ s@呼ぶ@よぶ@g;
 
       # Add space after comma.
-      $body =~ s@(,) *@, @g;
+      $body =~ s@ *(,) *@, @g;
       # Delete space after tab and \n.
       $body =~ s@([\t\n]) *@$1@g;
       # Double or more space to single space.
       $body =~ s@ +@ @g;
       # ( $ f $ ) -> ($ f $)
-      $body =~ s@([({\[]) *\$@$1\$@g;
-      $body =~ s@\$ *([)}\]．，])@\$$1@g;
+      $body =~ s@([({\[]) *@$1@g;
+      $body =~ s@ *([)}\]．，])@$1@g;
+      $body =~ s@([)}\]])\$@$1 \$@g;
+      $body =~ s@\$([({\[])@\$ $1@g;
+
 
       $body =~ s@\x00(\d+)\x00@$placeholders{"\x00$1\x00"}@ge;
 

@@ -21,19 +21,24 @@ snippet inv "inverse" Ai
 endsnippet
 
 context math(context)
-snippet := "coloneqq" Ai
-\\coloneqq 
+snippet __ " [HS] Math _{}" Ai
+_{$1} $0
 endsnippet
 
 context math(context)
-snippet xx "times" A
-\\times 
+snippet ^^ " [HS] Math ^{}" Ai
+^{$1} $0
+endsnippet
+
+context math(context)
+snippet := "coloneqq" Ai
+\\coloneqq 
 endsnippet
 
 # Rbb -> \mathbb{R}
 context math(context)
 snippet `\b([A-Z])bb` " [HS] Math bb" A
-`` rv = `\\mathbb{${m[1]}}` ``
+`` rv = `\\mathbb{${m[1]}} ` ``
 endsnippet
 context !math(context)
 snippet `\b([A-Z])bb` " [HS] Math bb" A
@@ -43,30 +48,70 @@ endsnippet
 # Acal -> \mathcal{A}
 context math(context)
 snippet `\b([A-Z])cal` " [HS] Math cal" A
-`` rv = `\\mathcal{${m[1]}}` ``
+`` rv = `\\mathcal{${m[1]}} ` ``
 endsnippet
 context !math(context)
 snippet `\b([A-Z])cal` " [HS] Math cal" A
 `` rv = ` $ \\mathcal{${m[1]}} $ ` ``
 endsnippet
 
+context math(context)
+snippet `\bz(a|b|g|G|d|D|e|z|h|q|Q|i|k|l|m|n|x|p|r|s|S|t|u|f|c|o|O)` " [HS] Greek alphabet" A
+`` 
+trans = {
+    "a": "alpha",
+    "b": "beta",
+    "g": "gamma",
+    "G": "Gamma",
+    "d": "delta",
+    "D": "Delta",
+    "e": "varepsilon", 
+    "z": "zeta",
+    "h": "eta",
+    "q": "theta",
+    "Q": "Theta",
+    "i": "iota",
+    "k": "kappa",
+    "l": "lambda",
+    "m": "mu",
+    "n": "nu",
+    "x": "xi",
+    "p": "pi",
+    "r": "rho",
+    "s": "sigma",
+    "S": "Sigma",
+    "t": "tau",
+    "u": "upsilon",
+    "f": "phi",
+    "c": "chi",
+    "o": "omega",
+    "O": "Omega",
+}
+rv = `\\${trans[m[1]]} ` 
+``
+endsnippet
+
 # le -> \le
 context math(context)
-snippet `\b(?<!\\)(?<!\\mathrm\{)(le|ge|div|to|not|in|sup|dim|deg|ker|range|grad|rot|Div|rank|diag|det|arg|max|min|argmax|argmin|sin|cos|tan|cot|ln|log|exp|perp|cup|cap|sim|iff|mid|Im|Re|succ|prec|circ|neq|ni|lim|sum|prod|const)` " [HS] Commands space" A
+snippet `\b(?<!\\)(?<!\\mathrm\{)(le|ge|div|to|not|in|sup|dim|deg|ker|range|grad|rot|Div|rank|diag|det|arg|max|min|argmax|argmin|sin|cos|tan|cot|ln|log|exp|perp|cup|cap|sim|iff|mid|Im|Re|succ|prec|circ|neq|ni|lim|sum|prod|const|forall|exists)` " [HS] Commands space" A
 `` rv = `\\${m[1]} ` ``
 endsnippet
 context math(context)
-snippet `\b(?<!\\)(?<!\\mathrm\{)(ift|c..|l..|v..)` " [HS] Commands" A
+snippet `\b(?<!\\)(?<!\\mathrm\{)(ift|c\.\.|l\.\.|v\.\.|xx|lra|Lra)` " [HS] Commands" A
 `` 
 trans = {
     "ift": "infty",
-    "c..": "cdots",
-    "l..": "ldots",
-    "v..": "vdots",
+    "c\.\.": "cdots",
+    "l\.\.": "ldots",
+    "v\.\.": "vdots",
+    "xx": "times",
+    "lra": "leftrightarrow",
+    "Lra": "Leftrightarrow",
 }
 rv = `\\${trans[m[1]] ?? m[1]} ` 
 ``
 endsnippet
+
 
 # lrp -> \lrp{ } 
 context math(context)
@@ -87,25 +132,19 @@ rv = `\\begin{${trans[m[1]] ?? m[1]}}\n\t${snip.tabstop(1)}\n\\end{${trans[m[1]]
 endsnippet
 
 context !math(context)
-snippet `\b(?<![\\{])(align|equat|gather|example|remark)` " [HS] Math environment" A
+snippet `\b(?<![\\{])(align|equat|gather|example|remark|proof|thm|th\*|dfn|df\*|lem|le\*)` " [HS] Math environment" A
 ``
 trans = {
     "equat": "equation",
+    "th\*": "thm*",
+    "df\*": "dfn*",
+    "le\*": "lem*",
 }
 rv = `\\begin{${trans[m[1]] ?? m[1]}}\n\t${snip.tabstop(1)}\n\\end{${trans[m[1]] ?? m[1]}}`
 ``
 endsnippet
 
 
-context math(context)
-snippet __ " [HS] Math _{}" Ai
-_{$1} $0
-endsnippet
-
-context math(context)
-snippet ^^ " [HS] Math ^{}" Ai
-^{$1} $0
-endsnippet
 
 
 # -------------------------------------------------------------------
